@@ -245,6 +245,9 @@ bread_line(const char *prompt)
         case 'a' - 0x60:
             buffer.relpos = buffer.start - buffer.gap - buffer.relpos;
             break;
+        case 'e' - 0x60:
+            buffer.relpos = buffer.end - buffer.post;
+            break;
         case 'd' - 0x60:
             buffer_delete_forwards(&buffer);
             break;
