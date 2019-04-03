@@ -230,6 +230,14 @@ bread_line(const char *prompt)
         case KEY_DOWN:
             // TODO: handle
             break;
+        case 'a' - 0x60:
+            buffer.relpos = buffer.start - buffer.gap - buffer.relpos;
+            break;
+        case 'u' - 0x60:
+            buffer.gap  = buffer.start;
+            buffer.post = buffer.end;
+            break;
+        case 'h' - 0x60:
         case '\x7f':
             buffer_delete_backwards(&buffer);
             break;
