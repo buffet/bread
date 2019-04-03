@@ -230,9 +230,11 @@ bread_line(const char *prompt)
         case KEY_NOKEY:
             // EMPTY
             break;
+        case 'b' - 0x60:
         case KEY_LEFT:
             buffer_backwards(&buffer);
             break;
+        case 'f' - 0x60:
         case KEY_RIGHT:
             buffer_forwards(&buffer);
             break;
