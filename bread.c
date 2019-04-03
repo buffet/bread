@@ -108,6 +108,16 @@ buffer_insertch(struct buffer *b, char ch)
 }
 
 static void
+buffer_delete_forwards(struct buffer *b)
+{
+    buffer_move_gap(b);
+
+    if (b->post < b->end) {
+        ++b->post;
+    }
+}
+
+static void
 buffer_delete_backwards(struct buffer *b)
 {
     buffer_move_gap(b);
@@ -232,6 +242,9 @@ bread_line(const char *prompt)
             break;
         case 'a' - 0x60:
             buffer.relpos = buffer.start - buffer.gap - buffer.relpos;
+            break;
+        case 'd' - 0x60:
+            buffer_delete_forwards(&buffer);
             break;
         case 'u' - 0x60:
             buffer.gap  = buffer.start;
