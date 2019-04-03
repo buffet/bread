@@ -14,6 +14,8 @@
 #include <termios.h>
 #include <unistd.h>
 
+#define CTRL_KEY(k) ((k) - 0x60)
+
 enum key {
     KEY_LOWEST = 256,
     KEY_NOKEY,
@@ -230,11 +232,11 @@ bread_line(const char *prompt)
         case KEY_NOKEY:
             // EMPTY
             break;
-        case 'b' - 0x60:
+        case CTRL_KEY('b'):
         case KEY_LEFT:
             buffer_backwards(&buffer);
             break;
-        case 'f' - 0x60:
+        case CTRL_KEY('f'):
         case KEY_RIGHT:
             buffer_forwards(&buffer);
             break;
@@ -242,20 +244,20 @@ bread_line(const char *prompt)
         case KEY_DOWN:
             // TODO: handle
             break;
-        case 'a' - 0x60:
+        case CTRL_KEY('a'):
             buffer.relpos = buffer.start - buffer.gap - buffer.relpos;
             break;
-        case 'e' - 0x60:
+        case CTRL_KEY('e'):
             buffer.relpos = buffer.end - buffer.post;
             break;
-        case 'd' - 0x60:
+        case CTRL_KEY('d'):
             buffer_delete_forwards(&buffer);
             break;
-        case 'u' - 0x60:
+        case CTRL_KEY('u'):
             buffer.gap  = buffer.start;
             buffer.post = buffer.end;
             break;
-        case 'h' - 0x60:
+        case CTRL_KEY('h'):
         case '\x7f':
             buffer_delete_backwards(&buffer);
             break;
