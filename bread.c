@@ -52,7 +52,7 @@ buffer_init(struct buffer *b, size_t init_size)
 static void
 buffer_forwards(struct buffer *b)
 {
-    if (b->gap + b->relpos < b->end) {
+    if (b->post + b->relpos < b->end) {
         ++b->relpos;
     }
 }
