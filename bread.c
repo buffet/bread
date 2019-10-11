@@ -157,7 +157,7 @@ restore_terminal(struct termios *old_termios)
     return true;
 }
 
-static enum key
+static int
 getkey(void)
 {
     char c[3];
@@ -221,7 +221,7 @@ bread_line(const char *prompt)
     }
 
     for (;;) {
-        enum key k = getkey();
+        int k = getkey();
 
         if (k == '\n') {
             printf("\r\n");
