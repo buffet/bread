@@ -241,12 +241,10 @@ bread_line(const char *prompt)
             buffer_forwards(&buffer);
             break;
         case KEY_UP:
-        case KEY_DOWN:
-            // TODO: handle
-            break;
         case CTRL_KEY('a'):
             buffer.relpos = buffer.start - buffer.gap - buffer.relpos;
             break;
+        case KEY_DOWN:
         case CTRL_KEY('e'):
             buffer.relpos = buffer.end - buffer.post;
             break;
